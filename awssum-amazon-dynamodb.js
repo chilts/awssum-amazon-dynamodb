@@ -23,7 +23,6 @@ var awssum = require('awssum');
 var amazon = require('awssum-amazon');
 var Sts = require('awssum-amazon-sts').Sts;
 var operations = require('./config.js');
-var awsSignatureV4 = require('awssum-amazon/lib/aws-signature-v4.js');
 
 // --------------------------------------------------------------------------------------------------------------------
 // package variables
@@ -65,7 +64,7 @@ var DynamoDB = function(opts) {
 };
 
 // inherit from Amazon
-util.inherits(DynamoDB, amazon.Amazon);
+util.inherits(DynamoDB, amazon.AmazonSignatureV4);
 
 // --------------------------------------------------------------------------------------------------------------------
 // methods we need to implement from amazon.js
@@ -104,11 +103,9 @@ DynamoDB.prototype.needsTarget = function() {
 
 // This service uses the AWS Signature v4.
 // Hopefully, it fulfills : http://docs.amazonwebservices.com/cloudsearch/latest/developerguide/requestauth.html
-DynamoDB.prototype.strToSign        = awsSignatureV4.strToSign;
-DynamoDB.prototype.signature        = awsSignatureV4.signature;
-DynamoDB.prototype.addSignature     = awsSignatureV4.addSignature;
-DynamoDB.prototype.addCommonOptions = awsSignatureV4.addCommonOptions;
-DynamoDB.prototype.contentType      = function() { return 'application/x-amz-json-1.0'; };
+DynamoDB.prototype.contentType = function() {
+    return 'application/x-amz-json-1.0';
+};
 
 // --------------------------------------------------------------------------------------------------------------------
 // operations on the service
