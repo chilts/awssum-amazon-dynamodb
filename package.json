@@ -1,6 +1,6 @@
 {
     "name" : "awssum-amazon-dynamodb",
-    "description" : "NodeJS module to talk to Amazon DynamoDB.",
+    "description" : "AwsSum plugin for Amazon DynamoDB.",
     "version" : "1.0.0",
 
     "main" : "awssum-amazon-dynamodb.js",
