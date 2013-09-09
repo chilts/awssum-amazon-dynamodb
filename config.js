@@ -222,8 +222,8 @@ module.exports = {
     },
 
     // can put new, or delete existing items, can't update existing items
-    url : 'http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/API_BatchWriteItem.html',
     BatchWriteItem : {
+        url : 'http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/API_BatchWriteItem.html',
         defaults : {
             Target : 'BatchWriteItem'
         },
