@@ -9,7 +9,7 @@
     },
     "peerDependencies" : {
         "awssum-amazon" : "1.1.x",
-        "awssum-amazon-sts" : "1.1.x"
+        "awssum-amazon-sts" : "1.0.x"
     },
     "dependencies" : {
         "data2xml" : "0.8.x",
