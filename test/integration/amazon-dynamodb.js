@@ -11,26 +11,26 @@
 // requires
 
 var fs = require('fs');
-var test = require('tap').test;
-var awssum = require('../../');
-var amazon = awssum.load('amazon/amazon');
-var DynamoDB = awssum.load('amazon/dynamodb').DynamoDB;
-var inspect = require('eyes').inspector();
+var test = require('tape');
+
+var dynamoDB = require('../../awssum-amazon-dynamodb.js');
+var DynamoDB = dynamoDB.DynamoDB;
 
 // --------------------------------------------------------------------------------------------------------------------
 
 var env = process.env;
 var dynamodb;
 try {
-    dynamodb = new DynamoDB({
+    dynamodb = new dynamoDB.DynamoDB({
         'accessKeyId'     : env.ACCESS_KEY_ID,
         'secretAccessKey' : env.SECRET_ACCESS_KEY,
         'awsAccountId'    : env.AWS_ACCOUNT_ID,
-        'region'          : amazon.US_EAST_1
+        'region'          : dynamoDB.US_EAST_1
     });
 }
 catch(e) {
     // env vars aren't set, so skip these integration tests
+    console.log('Skipping test : ' + e);
     process.exit();
 }
 
